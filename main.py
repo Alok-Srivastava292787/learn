@@ -126,22 +126,98 @@ def is_prime(num):
         if num % i == 0:
             return False
     return True
+def activity_decorator(func):
+    """Decorator to announce the execution of the activity handler."""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print("Starting activity handler...")
+        result = func(*args, **kwargs)
+        print("Activity handler terminated.")
+        return result
+    return wrapper
 
-# Example usage
-# Example usage
-if __name__ == "__main__":
-    num = int(input("Enter the number of Fibonacci numbers to generate: "))
-    generate_fibonacci_triangular(num)
-    try:
-        n = int(input("Enter the number of digits for the prime number: "))
-        generate_n_digit_prime(n)
-    except ValueError:
-        print("Invalid input! Please enter a positive integer.")
+#linked list activity handler with match-case
+from linkedlist import LinkedList
+@activity_decorator
+def linked_list_activity_handler():
+    """
+    Handle linked list activities based on user input using match-case.
+    """
+    ll = LinkedList()  # Assuming LinkedList class is already defined
+    while True:
+        print("\nChoose an activity:")
+        print("1. Append to Linked List")
+        print("2. Display Linked List")
+        print("3. Delete from Linked List")
+        print("4. Traverse Linked List")
+        print("5. Exit")
+        
+        try:
+            choice = int(input("Enter your choice: "))
+            match choice:
+                case 1:
+                    data = int(input("Enter the value to append: "))
+                    ll.append(data)
+                    print(f"Appended {data} to the linked list.")
+                    input("Press Enter to continue...")
+                    clear_screen_with_splash()  # Clear screen and show splash before each call
+                case 2:
+                    print("Linked List contents:")
+                    ll.display()
+                    input("Press Enter to continue...")
+                    clear_screen_with_splash()  # Clear screen and show splash before each call
+                case 3:
+                    key = int(input("Enter the value to delete: "))
+                    ll.delete(key)
+                    input("Press Enter to continue...")
+                    clear_screen_with_splash()  # Clear screen and show splash before each call
+                case 4:
+                    key = int(input("Enter the value to traverse to: "))
+                    ll.traverse(key)
+                    input("Press Enter to continue...")
+                    clear_screen_with_splash()  # Clear screen and show splash before each call
+                case 5:
+                    print("Exiting the program.")
+                    break
+                case _:
+                    print("Invalid choice. Please try again.")
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+import os
+import time
 
+def clear_screen_with_splash():
+    """Clear the screen and display the animated splash screen with the given text."""
+    os.system('clear')  # Use 'cls' for Windows, 'clear' for Linux/Mac
+    splash_text = """
 L           OOOOOOOOOO  AAAAAAAAAA  DDDDDDDDD   IIIIIIIIII  N       N   GGGGGGGGGG
 L           O        O  A        A  D        D      I       N N     N   G         
 L           O        O  A        A  D        D      I       N  N    N   G         
 L           O        O  AAAAAAAAAA  D        D      I       N   N   N   G   GGGGGG
 L           O        O  A        A  D        D      I       N    N  N   G        G
 LLLLLLLLLL  OOOOOOOOOO  A        A  DDDDDDDDD   IIIIIIIIII  N       N   GGGGGGGGGG
+"""
+    for char in splash_text:
+        print(char, end="", flush=True)
+        time.sleep(0.02)  # Adjust the delay for animation speed
+    time.sleep(1)
+    os.system('clear')  # Clear the screen after displaying the splash
+    
+# Example usage
+if __name__ == "__main__":
+    input("Press Enter to start the program...")
+    clear_screen_with_splash()  # Clear screen and show splash before each call
+    num = int(input("Enter the number of Fibonacci numbers to generate: "))
+    generate_fibonacci_triangular(num)
+    input("Press Enter to continue...")
+    clear_screen_with_splash()  # Clear screen and show splash before each call
+    try:
+        n = int(input("Enter the number of digits for the prime number: "))
+        generate_n_digit_prime(n)
+        input("Press Enter to continue...")
+    except ValueError:
+        print("Invalid input! Please enter a positive integer.")
 
+    clear_screen_with_splash()  # Clear screen and show splash before each call
+    linked_list_activity_handler()
+    clear_screen_with_splash()  # Clear screen and show splash before each call
