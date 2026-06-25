@@ -137,3 +137,11 @@ if __name__ == "__main__":
         generate_n_digit_prime(n)
     except ValueError:
         print("Invalid input! Please enter a positive integer.")
+
+L           OOOOOOOOOO  AAAAAAAAAA  DDDDDDDDD   IIIIIIIIII  N       N   GGGGGGGGGG
+L           O        O  A        A  D        D      I       N N     N   G         
+L           O        O  A        A  D        D      I       N  N    N   G         
+L           O        O  AAAAAAAAAA  D        D      I       N   N   N   G   GGGGGG
+L           O        O  A        A  D        D      I       N    N  N   G        G
+LLLLLLLLLL  OOOOOOOOOO  A        A  DDDDDDDDD   IIIIIIIIII  N       N   GGGGGGGGGG
+
